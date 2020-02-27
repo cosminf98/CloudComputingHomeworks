@@ -1,0 +1,152 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <label for="team1"> Choose team 1</label>
+    <select name="team1" id="team1">
+<!--         <option value="Juventus">Juventus</option>-->
+    </select>
+    <button onclick="getTeams()">Give Me Teams</button>
+    <br><br>
+    
+    <label for="team2"> Choose team 2</label>
+    <select name="team2" id="team2">
+<!--         <option value="Verona">Verona</option>-->
+    </select>
+    <button onclick="getPlayers()"> Give me players</button>
+    <br><br>
+    <label for="player">Pick a player</label>
+    <select name="player" id="player">
+        <!-- <option value="Danilo">Danilo</option> -->
+    </select>
+    <button onclick="getPlayerStats()">
+        Give me player stats
+    </button>
+
+    <script>
+        base_url = 'http://localhost:9000'
+        
+
+        function getPlayerStats(){
+            team1= document.getElementById('team1');
+            team2= document.getElementById('team2');
+            team1_text = team1.options[team1.selectedIndex].value;
+            team2_text = team2.options[team2.selectedIndex].value;
+
+            player = document.getElementById('player');
+            player_text = player.options[player.selectedIndex].value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange= function (){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        content = xhr.responseText;
+                        console.log(content);
+                        
+                        json_response = JSON.parse(content);
+
+                        stats = document.createElement('p');
+                        stats.innerHTML+= 'Man of The Match: ' + json_response['isManOfTheMatch'] + '<br>'
+                        for(let stat in json_response['stats']){
+                            stats.innerHTML+= `${stat} = ${json_response['stats'][stat]} <br>`
+                        }
+                        document.getElementsByTagName('body')[0].append(stats);
+                    }
+                }
+                else{
+                    console.log(xhr.responseText);
+                    }
+            }
+            // for players with just last name (e.g Danilo)
+            if(player_text[0]==' ')
+                player_text=player_text.substring(1);
+            xhr.open('get',`${base_url}/stats?team1=${team1_text}&team2=${team2_text}&player_name=${player_text}`);
+            xhr.send();
+        }
+
+        function getPlayers(){
+            //get selected teams
+            team1= document.getElementById('team1');
+            team2= document.getElementById('team2');
+            team1_text = team1.options[team1.selectedIndex].value;
+            team2_text = team2.options[team2.selectedIndex].value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange= function (){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        content = xhr.responseText;
+                        console.log('CONTENT');
+                        console.log(content);
+                        
+                        json_response = JSON.parse(content);
+
+                        playerElement=document.getElementById('player');
+                        //append players\
+                            for(let player of json_response){
+                                console.log(player);
+                                option = document.createElement('option');
+
+                                fullName = player;
+                                option.value=fullName;
+                                option.text=fullName;
+                                playerElement.add(option);
+                            }
+                    }
+                    else{
+                        console.log(xhr.responseText);
+                        }
+                }
+
+        }
+        xhr.open('get',`${base_url}/players?team1=${team1_text}&team2=${team2_text}`);
+        xhr.send();
+        }
+
+
+        
+        function getTeams(){
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange= function (){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    content = xhr.responseText;
+                    console.log(content);
+                    
+                    json_response = JSON.parse(content);
+                    
+                    teams_1 = document.getElementById('team1');
+                    teams_2=document.getElementById('team2');
+                    console.log(json_response);
+
+                    //append teams to pick
+                    for (let team of json_response/*['api']['teams']*/){
+                        option = document.createElement('option');
+                        option2 = document.createElement('option');
+                        option.value=team;
+                        option.text=team;
+                        option2.value=team;
+                        option2.text=team;
+                        teams_1.add(option);
+                        teams_2.add(option2);
+                    }
+                }
+            }
+            else{
+                console.log('Something went wrong.');    
+            }
+        }
+        xhr.open('get',`${base_url}/teams`);
+        xhr.send();
+        }
+
+
+    </script>
+</body>
+</html>
