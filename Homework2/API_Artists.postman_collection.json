@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "3b340951-7d8f-464d-96ee-fdbfb8609e53",
+		"name": "API_Artists",
+		"description": "api.py - Routing Endpoints\ndatabase.py - Database (CRUD) functions\nhandlers.py - Functions used for handling requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9000/8/albums",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"name\":\"Vara manelelor\",\n\t\t\"release_date\":\"2005-06-01\"\n\t},\n\t\t{\n\t\t\"name\":\"Vara manelelor 2\",\n\t\t\"release_date\":\"2007-06-01\"\n\t},\n\t\t{\n\t\t\"name\":\"Vara manelelor 3\",\n\t\t\"release_date\":\"2009-06-01\"\n\t}\n\t\n]"
+				},
+				"url": {
+					"raw": "http://localhost:9000/8/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"8",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Joyner\",\n\t\"last_name\":\"Lucas\",\n\t\"birth_date\":\"1990-05-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Joyner\",\n\t\"last_name\":\"Lucas\",\n\t\"birth_date\":\"1990-05-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists/8/albums",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Joyner\",\n\t\"last_name\":\"Lucas\",\n\t\"birth_date\":\"1990-05-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/8/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"8",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/albums/28",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n     \"name\": \"Vara manelelor 4\",\r\n        \"release_date\": \"2010-06-01 00:00:00\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:9000/albums/28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"albums",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists/1/albums",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"name\":\"The Massacre\",\n\t\t\"release_date\":\"2004-01-01\",\n\t\t\"id\":\"3\"\n\t},\n\t\t{\n\t\t\"name\":\"Get Rich or Die Trying\",\n\t\t\"release_date\":\"2004-01-01\",\n\t\t\"id\": \"4\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/1/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"1",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists/2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwibWVzc2FnZSI6InlvdSdyZSBhIGN1cmlvdXMgb25lLCBhcmVuJ3QgeW91IiwiaWF0IjoxNTE2MjM5MDIyfQ.KSMGSM1lhfQkxKpxOXlwZA3FRiv8VGLxcq-SBlLjtRE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists/9/albums",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwibWVzc2FnZSI6InlvdSdyZSBhIGN1cmlvdXMgb25lLCBhcmVuJ3QgeW91IiwiaWF0IjoxNTE2MjM5MDIyfQ.KSMGSM1lhfQkxKpxOXlwZA3FRiv8VGLxcq-SBlLjtRE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/9/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"9",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/artists/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwibWVzc2FnZSI6InlvdSdyZSBhIGN1cmlvdXMgb25lLCBhcmVuJ3QgeW91IiwiaWF0IjoxNTE2MjM5MDIyfQ.KSMGSM1lhfQkxKpxOXlwZA3FRiv8VGLxcq-SBlLjtRE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9000/artists/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"artists",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
